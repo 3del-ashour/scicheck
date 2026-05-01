@@ -8,7 +8,7 @@ A multi-agent LLM system that fact-checks science and health claims using Retrie
 |---|--------|------|------|
 | 1 | Adel Ashour | Project Lead / Orchestration Engineer | LangGraph orchestrator, integration, repo hygiene |
 | 2 | Salih Özgür Seçen | RAG / Vector DB Engineer | ChromaDB, ingestion pipeline, retrieval API |
-| 3 | TBD | Agent Engineer A | Claim Extractor + Source Credibility Analyzer |
+| 3 | Bilal Aksel | Agent Engineer A | Claim Extractor + Source Credibility Analyzer |
 | 4 | TBD | Agent Engineer B | Evidence Retriever Agent + Verdict Synthesizer |
 | 5 | TBD | Safety & Monitoring Engineer | Safety Monitor agent, bias/hallucination checks, logging |
 | 6 | TBD | UI + Evaluation Engineer | Streamlit UI, SciFact benchmark eval pipeline |
