@@ -6,7 +6,7 @@ A multi-agent LLM system that fact-checks science and health claims using Retrie
 
 | # | Member | Role | Owns |
 |---|--------|------|------|
-| 1 | TBD | Project Lead / Orchestration Engineer | LangGraph orchestrator, integration, repo hygiene |
+| 1 | Adel Ashour | Project Lead / Orchestration Engineer | LangGraph orchestrator, integration, repo hygiene |
 | 2 | TBD | RAG / Vector DB Engineer | ChromaDB, ingestion pipeline, retrieval API |
 | 3 | TBD | Agent Engineer A | Claim Extractor + Source Credibility Analyzer |
 | 4 | TBD | Agent Engineer B | Evidence Retriever Agent + Verdict Synthesizer |
