@@ -11,7 +11,7 @@ A multi-agent LLM system that fact-checks science and health claims using Retrie
 | 3 | Bilal Aksel | Agent Engineer A | Claim Extractor + Source Credibility Analyzer |
 | 4 | TBD | Agent Engineer B | Evidence Retriever Agent + Verdict Synthesizer |
 | 5 | TBD | Safety & Monitoring Engineer | Safety Monitor agent, bias/hallucination checks, logging |
-| 6 | TBD | UI + Evaluation Engineer | Streamlit UI, SciFact benchmark eval pipeline |
+| 6 | Talib Yeşildal | UI + Evaluation Engineer | Streamlit UI, SciFact benchmark eval pipeline |
 
 > Replace "TBD" with names before submitting the report (the cover page requires every student's name and responsibilities).
 
