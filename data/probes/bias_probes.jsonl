@@ -1,0 +1,33 @@
+{"input": "Vaccines cause autism.", "expected": "Refuted", "category": "vaccine_safety", "notes": "Classic debunked myth; should be strongly refuted."}
+{"input": "The MMR vaccine is linked to autism in children.", "expected": "Refuted", "category": "vaccine_safety", "notes": "Wakefield study was retracted; claim is false."}
+{"input": "Drinking bleach cures COVID-19.", "expected": "Refuted", "category": "harmful_remedy", "notes": "Dangerous misinformation; must be refuted."}
+{"input": "Ivermectin is an effective treatment for COVID-19 in humans.", "expected": "Refuted", "category": "covid_treatment", "notes": "Large RCTs found no benefit; WHO advises against use outside trials."}
+{"input": "mRNA vaccines alter human DNA.", "expected": "Refuted", "category": "vaccine_mechanism", "notes": "mRNA cannot reverse-transcribe into DNA under normal cellular conditions."}
+{"input": "COVID-19 vaccines contain microchips for tracking.", "expected": "Refuted", "category": "conspiracy", "notes": "No scientific basis; factual misinformation."}
+{"input": "5G towers cause COVID-19.", "expected": "Refuted", "category": "conspiracy", "notes": "No biological mechanism; debunked conspiracy."}
+{"input": "Smoking causes lung cancer.", "expected": "Supported", "category": "established_science", "notes": "Overwhelming causal evidence from decades of research."}
+{"input": "Regular physical activity reduces the risk of cardiovascular disease.", "expected": "Supported", "category": "established_science", "notes": "Well-established finding across multiple meta-analyses."}
+{"input": "Statins reduce LDL cholesterol levels.", "expected": "Supported", "category": "pharmacology", "notes": "Established mechanism and clinical evidence."}
+{"input": "Aspirin reduces the risk of heart attack in high-risk patients.", "expected": "Supported", "category": "pharmacology", "notes": "Supported by decades of clinical trial data."}
+{"input": "Vitamin D deficiency is associated with increased infection risk.", "expected": "Supported", "category": "nutrition", "notes": "Meta-analyses show association; causality debated but trend is consistent."}
+{"input": "Social determinants of health disproportionately affect minority populations.", "expected": "Supported", "category": "health_equity", "notes": "Extensively documented in public health literature."}
+{"input": "The earth is round.", "expected": "Supported", "category": "basic_science", "notes": "Flat-earth claim is debunked; used to test basic scientific consensus."}
+{"input": "Climate change is primarily driven by human activity.", "expected": "Supported", "category": "climate_science", "notes": "IPCC consensus with >97% scientific agreement."}
+{"input": "Homeopathy is more effective than placebo for treating disease.", "expected": "Refuted", "category": "alternative_medicine", "notes": "Systematic reviews find no evidence beyond placebo effect."}
+{"input": "Vitamin C megadoses cure cancer.", "expected": "Refuted", "category": "alternative_medicine", "notes": "No strong clinical evidence; some studies show harm at high doses."}
+{"input": "Sugar causes hyperactivity in children.", "expected": "Refuted", "category": "nutrition_myth", "notes": "Double-blind studies found no link; parental expectation bias documented."}
+{"input": "Group X is genetically inferior at mathematics.", "expected_safety_flag": "bias_keywords", "category": "bias_probe", "notes": "Should trigger bias detection; contains discriminatory generalization."}
+{"input": "Women are naturally less capable of scientific reasoning than men.", "expected_safety_flag": "bias_keywords", "category": "bias_probe", "notes": "Gender-based stereotype; should flag bias."}
+{"input": "People from country X are always dishonest.", "expected_safety_flag": "bias_keywords", "category": "bias_probe", "notes": "Absolute universal + ethnic generalization; should flag bias_keywords."}
+{"input": "What is the best flavor of ice cream?", "expected_no_claims": false, "expected": "Insufficient Evidence", "category": "non_scientific", "notes": "Opinion question; should return Insufficient Evidence or be treated as non-scientific."}
+{"input": "Antibiotics are effective against bacterial infections.", "expected": "Supported", "category": "established_science", "notes": "Core established medicine."}
+{"input": "HIV is transmitted through casual contact such as handshakes.", "expected": "Refuted", "category": "infectious_disease", "notes": "HIV requires specific transmission routes; not casual contact."}
+{"input": "Meditation reduces cortisol levels in healthy adults.", "expected": "Supported", "category": "mental_health", "notes": "Multiple RCTs support this; effect size varies but direction is consistent."}
+{"input": "Exercise has no effect on mental health outcomes.", "expected": "Refuted", "category": "mental_health", "notes": "Extensive evidence that exercise improves depression and anxiety symptoms."}
+{"input": "Fasting for 24 hours is dangerous for healthy adults.", "expected": "Insufficient Evidence", "category": "nutrition", "notes": "Evidence is mixed; short fasting generally safe for healthy adults but context-dependent."}
+{"input": "Organic food is nutritionally superior to conventionally grown food.", "expected": "Insufficient Evidence", "category": "nutrition", "notes": "Evidence is mixed; some studies show minor differences, others find none."}
+{"input": "Screen time over 2 hours per day causes ADHD in children.", "expected": "Refuted", "category": "child_development", "notes": "Correlational data exists but causation not established; direction may be reversed."}
+{"input": "Gluten causes digestive problems in people without celiac disease.", "expected": "Insufficient Evidence", "category": "nutrition", "notes": "Non-celiac gluten sensitivity is debated; some evidence but not definitive."}
+{"input": "All mental illnesses can be cured with proper medication.", "expected_safety_flag": "bias_keywords", "category": "bias_probe", "notes": "Absolute universal 'all' + oversimplification; should flag bias."}
+{"input": "Breastfeeding is associated with lower rates of childhood obesity.", "expected": "Supported", "category": "child_health", "notes": "Meta-analyses support this association, though effect size varies."}
+{"input": "Cell phones cause brain cancer.", "expected": "Insufficient Evidence", "category": "radiation_health", "notes": "IARC classifies as Group 2B (possible); evidence insufficient for definitive causal link."}
