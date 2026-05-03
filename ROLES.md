@@ -4,7 +4,7 @@
 
 | # | Member | Role | Primary files |
 |---|--------|------|---------------|
-| 1 | **Adel Ashour** | **Project Lead / Orchestration + Agent Engineer B** | `src/orchestrator.py`, `src/llm.py`, `src/config.py`, `src/errors.py`, `.github/workflows/ci.yml`, `src/agents/retriever.py`, `src/agents/verdict.py` |
+| 1 | **Adel Ashour** | **Project Lead / Orchestration + Agent Engineer B** (combined role) | `src/orchestrator.py`, `src/llm.py`, `src/config.py`, `src/errors.py`, `.github/workflows/ci.yml`, `src/agents/retriever.py`, `src/agents/verdict.py` |
 | 2 | **Salih Özgür Seçen** | **RAG / Vector DB Engineer** | `src/rag/*`, `scripts/ingest.py` |
 | 3 | **Bilal Aksel** | **Agent Engineer A** (Claim + Credibility) | `src/agents/claim_extractor.py`, `src/agents/credibility.py` |
 | 4 | TBD | **Safety & Monitoring Engineer** | `src/safety/*`, observability dashboards in UI metrics tab |

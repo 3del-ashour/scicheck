@@ -4,16 +4,16 @@ A multi-agent LLM system that fact-checks science and health claims using Retrie
 
 ## Team
 
-| Member | Role IDs | Owns | Read these docs |
-|--------|----------|------|-----------------|
-| **Adel Ashour** | M1 + M4 | Project Lead, Orchestration, Evidence Retriever + Verdict Synthesizer | [member-1](docs/member-1-orchestration.md), [member-4](docs/member-4-agent-retrieval-verdict.md) |
-| **Salih Özgür Seçen** | M2 | RAG / Vector DB (ChromaDB, ingestion, retrieval API) | [member-2](docs/member-2-rag.md) |
-| **Bilal Aksel** | M3 | Claim Extractor + Source Credibility Analyzer | [member-3](docs/member-3-agent-claim-credibility.md) |
-| TBD | M5 | Safety & Monitoring (bias/hallucination checks, logging) | [member-5](docs/member-5-safety-monitoring.md) |
-| **Talib Yeşildal** | M6 | UI + Evaluation (Streamlit + SciFact benchmark) | [member-6](docs/member-6-ui-evaluation.md) |
-| **Ecem** | M7 | Documentation & Presentation Lead (PDF, slides, video) | [member-7](docs/member-7-documentation-presentation.md) |
+| # | Member | Role | Owns | Read these docs |
+|---|--------|------|------|-----------------|
+| 1 | **Adel Ashour** | Project Lead / Orchestration + Agent Engineer B | LangGraph orchestrator, integration, repo hygiene, Evidence Retriever + Verdict Synthesizer | [member-1](docs/member-1-orchestration.md) + [member-4](docs/member-4-agent-retrieval-verdict.md) |
+| 2 | **Salih Özgür Seçen** | RAG / Vector DB Engineer | ChromaDB, ingestion pipeline, retrieval API | [member-2](docs/member-2-rag.md) |
+| 3 | **Bilal Aksel** | Agent Engineer A | Claim Extractor + Source Credibility Analyzer | [member-3](docs/member-3-agent-claim-credibility.md) |
+| 4 | TBD | Safety & Monitoring Engineer | Safety Monitor agent, bias/hallucination checks, logging | [member-5](docs/member-5-safety-monitoring.md) |
+| 5 | **Talib Yeşildal** | UI + Evaluation Engineer | Streamlit UI, SciFact benchmark eval pipeline | [member-6](docs/member-6-ui-evaluation.md) |
+| 6 | **Ecem** | Documentation & Presentation Lead | Final PDF report, slide deck, backup video, demo script | [member-7](docs/member-7-documentation-presentation.md) |
 
-> Role IDs (M1–M7) are stable identifiers used in branch names, issue labels, and across the docs. Adel covers M1 + M4. Ecem (M7) is the only non-coding role and owns final report compilation, slides, and the recorded backup demo.
+> Adel takes on the heaviest load — both project leadership/orchestration and the Verdict/Retriever agents — as a single combined role. Ecem is the only non-coding member and owns final report compilation, slides, and the recorded backup demo. M5 (Safety) is the last open slot to fill.
 
 ## How It Works
 
