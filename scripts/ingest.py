@@ -11,6 +11,7 @@ Steps:
     4. Upsert into ChromaDB with stable document IDs.
     5. Optionally save processed passages to data/processed/passages.jsonl.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -26,8 +27,6 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
-
-from datasets import load_dataset  # noqa: E402
 
 from src.config import get_settings  # noqa: E402
 from src.logging_setup import configure_logging, get_logger  # noqa: E402
@@ -108,13 +107,11 @@ def main(limit: int | None = None) -> None:
     if corpus_cache.exists():
         log.info("ingest.loading_from_cache", path=str(corpus_cache))
     else:
-        import tarfile
         import io
+        import tarfile
         import urllib.request
 
-        archive_url = (
-            "https://scifact.s3-us-west-2.amazonaws.com/release/latest/data.tar.gz"
-        )
+        archive_url = "https://scifact.s3-us-west-2.amazonaws.com/release/latest/data.tar.gz"
         log.info("ingest.downloading", url=archive_url)
 
         with urllib.request.urlopen(archive_url) as response:
@@ -131,14 +128,12 @@ def main(limit: int | None = None) -> None:
                         corpus_cache.write_bytes(f.read())
                         break
             else:
-                raise FileNotFoundError(
-                    "corpus.jsonl not found in the SciFact tar.gz archive"
-                )
+                raise FileNotFoundError("corpus.jsonl not found in the SciFact tar.gz archive")
 
         log.info("ingest.downloaded", path=str(corpus_cache))
 
     # Parse the JSONL file
-    with open(corpus_cache, "r", encoding="utf-8") as f:
+    with open(corpus_cache, encoding="utf-8") as f:
         ds = [json.loads(line) for line in f if line.strip()]
     log.info("ingest.dataset_loaded", total_docs=len(ds))
 
@@ -217,9 +212,9 @@ def main(limit: int | None = None) -> None:
     )
 
     print(f"\n{'='*60}")
-    print(f"  SciCheck Ingestion Complete")
+    print("  SciCheck Ingestion Complete")
     print(f"{'='*60}")
-    print(f"  Corpus       : SciFact (allenai/scifact)")
+    print("  Corpus       : SciFact (allenai/scifact)")
     print(f"  Documents    : {len(passages)}")
     print(f"  Collection   : {final_count} vectors in ChromaDB")
     print(f"  Embedding    : {settings.embedding_model}")
