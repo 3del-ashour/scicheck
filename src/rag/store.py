@@ -6,6 +6,7 @@ cosine distance (the Chroma default when ``hnsw:space`` is ``cosine``).
 
 Persist path is read from ``src.config.get_settings().chroma_path``.
 """
+
 from __future__ import annotations
 
 import chromadb
