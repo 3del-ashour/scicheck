@@ -4,6 +4,7 @@ Wraps sentence-transformers to provide a clean embed() interface.
 Uses the model name from centralized config (default: all-MiniLM-L6-v2, 384-dim).
 Embeddings are L2-normalized so cosine similarity == inner product.
 """
+
 from __future__ import annotations
 
 from sentence_transformers import SentenceTransformer
