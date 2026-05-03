@@ -4,16 +4,16 @@ A multi-agent LLM system that fact-checks science and health claims using Retrie
 
 ## Team
 
-| # | Member | Role | Owns |
-|---|--------|------|------|
-| 1 | Adel Ashour | Project Lead / Orchestration Engineer | LangGraph orchestrator, integration, repo hygiene |
-| 2 | Salih Özgür Seçen | RAG / Vector DB Engineer | ChromaDB, ingestion pipeline, retrieval API |
-| 3 | Bilal Aksel | Agent Engineer A | Claim Extractor + Source Credibility Analyzer |
-| 4 | TBD | Agent Engineer B | Evidence Retriever Agent + Verdict Synthesizer |
-| 5 | TBD | Safety & Monitoring Engineer | Safety Monitor agent, bias/hallucination checks, logging |
-| 6 | Talib Yeşildal | UI + Evaluation Engineer | Streamlit UI, SciFact benchmark eval pipeline |
+| Member | Role IDs | Owns | Read these docs |
+|--------|----------|------|-----------------|
+| **Adel Ashour** | M1 + M4 | Project Lead, Orchestration, Evidence Retriever + Verdict Synthesizer | [member-1](docs/member-1-orchestration.md), [member-4](docs/member-4-agent-retrieval-verdict.md) |
+| **Salih Özgür Seçen** | M2 | RAG / Vector DB (ChromaDB, ingestion, retrieval API) | [member-2](docs/member-2-rag.md) |
+| **Bilal Aksel** | M3 | Claim Extractor + Source Credibility Analyzer | [member-3](docs/member-3-agent-claim-credibility.md) |
+| TBD | M5 | Safety & Monitoring (bias/hallucination checks, logging) | [member-5](docs/member-5-safety-monitoring.md) |
+| **Talib Yeşildal** | M6 | UI + Evaluation (Streamlit + SciFact benchmark) | [member-6](docs/member-6-ui-evaluation.md) |
+| **Ecem** | M7 | Documentation & Presentation Lead (PDF, slides, video) | [member-7](docs/member-7-documentation-presentation.md) |
 
-> Replace "TBD" with names before submitting the report (the cover page requires every student's name and responsibilities).
+> Role IDs (M1–M7) are stable identifiers used in branch names, issue labels, and across the docs. Adel covers M1 + M4. Ecem (M7) is the only non-coding role and owns final report compilation, slides, and the recorded backup demo.
 
 ## How It Works
 

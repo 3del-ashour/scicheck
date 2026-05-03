@@ -1,13 +1,15 @@
-# Member 1 — Project Lead / Orchestration Engineer
+# Member 1 — Project Lead / Orchestration Engineer (Adel)
 
 > **Before starting:** read `README.md`, `ARCHITECTURE.md`, `CONTRACTS.md`, `ROLES.md`.
 > Paste this file + `CONTRACTS.md` into Claude Code / ChatGPT for AI assistance.
+>
+> **Adel covers two roles: M1 (this doc) and M4 (Retriever + Verdict, see `docs/member-4-agent-retrieval-verdict.md`).** Build M1 first to unblock the team, then move to M4.
 
 ## Your Mission
 
-You are the integrator. Your job is to make the 5 other members' modules work together. You write the LangGraph orchestrator that calls each agent in order, manages shared state, and returns a `FinalResponse` to the UI.
+You are the integrator. Your job is to make the other members' modules work together. You write the LangGraph orchestrator that calls each agent in order, manages shared state, and returns a `FinalResponse` to the UI.
 
-You also own repo hygiene: CI, env config, the LLM client interface, error handling, logging.
+You also own repo hygiene: CI, env config, the LLM client interface, error handling, logging. After M1 is stable, you build the Evidence Retriever and Verdict Synthesizer agents (M4).
 
 ## Files You Own
 
