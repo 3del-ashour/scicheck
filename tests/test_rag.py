@@ -6,12 +6,12 @@ integration tests that require a populated vector DB.
 Run unit tests:      pytest tests/test_rag.py
 Run integration:     pytest tests/test_rag.py -m integration
 """
+
 from __future__ import annotations
 
 import pytest
 
 from src.contracts import Evidence
-
 
 # =========================================================================
 # Unit tests (CI-safe, no real DB or model)
@@ -148,8 +148,8 @@ def test_retrieve_handles_empty_results(monkeypatch):
 
 def test_retrieve_raises_rag_error_on_failure(monkeypatch):
     """retrieve() should wrap exceptions in RAGError."""
-    from src.errors import RAGError
     import src.rag.service as svc
+    from src.errors import RAGError
 
     def broken_embed(texts):
         raise RuntimeError("model crashed")
