@@ -13,7 +13,7 @@ A multi-agent LLM system that fact-checks science and health claims using Retrie
 | 5 | **Talib Yeşildal** | UI + Evaluation Engineer | Streamlit UI, SciFact benchmark eval pipeline | [member-6](docs/member-6-ui-evaluation.md) |
 | 6 | **Ecem** | Documentation & Presentation Lead | Final PDF report, slide deck, backup video, demo script | [member-7](docs/member-7-documentation-presentation.md) |
 
-> Adel takes on the heaviest load — both project leadership/orchestration and the Verdict/Retriever agents — as a single combined role. Ecem is the only non-coding member and owns final report compilation, slides, and the recorded backup demo. M5 (Safety) is the last open slot to fill.
+
 
 ## How It Works
 
