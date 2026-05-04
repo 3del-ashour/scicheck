@@ -110,3 +110,4 @@
 {"ts": "2026-05-04T15:50:01.972196+00:00", "claim_id": "c1", "label": "Insufficient Evidence", "confidence": 0.56, "passed": true, "flags": [], "notes": ""}
 {"ts": "2026-05-04T15:50:23.222478+00:00", "claim_id": "c1", "label": "Refuted", "confidence": 0.82, "passed": true, "flags": [], "notes": ""}
 {"ts": "2026-05-04T15:50:23.223357+00:00", "claim_id": "c1", "label": "Supported", "confidence": 0.88, "passed": true, "flags": [], "notes": ""}
+{"ts": "2026-05-04T16:24:10.101688+00:00", "claim_id": "c1", "label": "Insufficient Evidence", "confidence": 0.77, "passed": true, "flags": [], "notes": ""}

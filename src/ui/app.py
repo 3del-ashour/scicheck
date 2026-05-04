@@ -13,10 +13,11 @@ from src.ui.components import render_per_claim, render_metrics_tab
 
 # --- PIPELINE WRAPPER ---
 def run_pipeline(user_input: str):
-    """Calls the real orchestrator with a fallback to mock."""
+    """Calls the real orchestrator with a fallback to mock on any failure."""
     try:
         return run(user_input), False
-    except NotImplementedError:
+    except (NotImplementedError, Exception) as e:
+        # Fallback to mock if orchestrator is not ready or fails (e.g. missing API key)
         from src.safety.mock_pipeline import mock_run
         return mock_run(user_input), True
 

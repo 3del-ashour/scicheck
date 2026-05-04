@@ -60,14 +60,11 @@ def evaluate(n_samples: int = 200) -> dict:
         
         try:
             response = run(row["claim"])
-        except NotImplementedError:
-            # Fallback to mock_run if orchestrator is not ready
+        except (NotImplementedError, Exception) as e:
+            # Fallback to mock_run if orchestrator is not ready or fails
             from src.safety.mock_pipeline import mock_run
             response = mock_run(row["claim"])
             using_mock = True
-        except Exception as e:
-            logger.error("orchestrator_failed", claim_id=i, error=str(e))
-            response = None
 
         if not response or not response.per_claim:
             preds.append("Insufficient Evidence")
