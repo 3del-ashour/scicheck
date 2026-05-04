@@ -108,13 +108,23 @@ def main(limit: int | None = None) -> None:
         log.info("ingest.loading_from_cache", path=str(corpus_cache))
     else:
         import io
+        import ssl
         import tarfile
         import urllib.request
+
+        # Use certifi's CA bundle so this works on macOS python.org installs
+        # that don't ship system root certs. Falls back to system context.
+        try:
+            import certifi
+
+            ssl_ctx = ssl.create_default_context(cafile=certifi.where())
+        except ImportError:
+            ssl_ctx = ssl.create_default_context()
 
         archive_url = "https://scifact.s3-us-west-2.amazonaws.com/release/latest/data.tar.gz"
         log.info("ingest.downloading", url=archive_url)
 
-        with urllib.request.urlopen(archive_url) as response:
+        with urllib.request.urlopen(archive_url, context=ssl_ctx) as response:
             archive_bytes = response.read()
 
         # Extract corpus.jsonl from the archive

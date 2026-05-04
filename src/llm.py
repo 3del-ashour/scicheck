@@ -17,9 +17,19 @@ class LLMClient(ABC):
 
 
 class OpenAIClient(LLMClient):
+    """OpenAI-compatible chat client.
+
+    Works against OpenAI itself or any OpenAI-compatible endpoint
+    (Groq, Together, Ollama, vLLM, …) — set ``LLM_BASE_URL`` and an
+    appropriate ``LLM_MODEL`` in the environment.
+    """
+
     def __init__(self, model: str | None = None) -> None:
         s = get_settings()
-        self._client = OpenAI(api_key=s.openai_api_key)
+        kwargs: dict = {"api_key": s.openai_api_key or "not-needed"}
+        if s.llm_base_url:
+            kwargs["base_url"] = s.llm_base_url
+        self._client = OpenAI(**kwargs)
         self._model = model or s.llm_model
 
     def complete(self, system: str, user: str, **kwargs) -> str:
