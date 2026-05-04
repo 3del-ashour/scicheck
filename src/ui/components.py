@@ -1,4 +1,8 @@
+import json
+from pathlib import Path
+
 import streamlit as st
+
 from src.contracts import PerClaimResult
 
 LABEL_COLORS = {
@@ -109,7 +113,6 @@ def render_metrics_tab(data: dict | None = None) -> None:
             st.info("📊 Evaluation results are not available yet. Run `python scripts/run_eval.py 200` to generate results.")
             return
         try:
-            import json
             data = json.loads(p.read_text())
         except Exception as e:
             st.error(f"Could not read results file: {e}")
