@@ -53,15 +53,16 @@ def evaluate(n_samples: int = 200) -> dict:
 
     preds: list[str] = []
     golds: list[str] = []
-    using_mock = False
-    
+    citation_correct = 0
+    citation_total = 0
+
     for i, row in enumerate(sample):
         gold_label = LABEL_MAP.get(row.get("evidence_label", "NEI"), "Insufficient Evidence")
+        gold_doc_ids = {str(d) for d in row.get("evidence_doc_id", [])}
         
         try:
             response = run(row["claim"])
         except (NotImplementedError, Exception) as e:
-            # Fallback to mock_run if orchestrator is not ready or fails
             from src.safety.mock_pipeline import mock_run
             response = mock_run(row["claim"])
             using_mock = True
@@ -69,7 +70,13 @@ def evaluate(n_samples: int = 200) -> dict:
         if not response or not response.per_claim:
             preds.append("Insufficient Evidence")
         else:
-            preds.append(response.per_claim[0].verdict.label)
+            pcr = response.per_claim[0]
+            preds.append(pcr.verdict.label)
+            
+            # Citation precision calculation
+            if pcr.verdict.citations:
+                citation_total += len(pcr.verdict.citations)
+                citation_correct += sum(1 for c in pcr.verdict.citations if str(c) in gold_doc_ids)
         
         golds.append(gold_label)
         
@@ -79,7 +86,7 @@ def evaluate(n_samples: int = 200) -> dict:
     metrics = compute_metrics(golds, preds)
     metrics["n_samples"] = len(sample)
     metrics["using_mock_pipeline"] = using_mock
-    metrics["citation_precision"] = 0.85 # Placeholder
+    metrics["citation_precision"] = (citation_correct / citation_total) if citation_total > 0 else 0.0
     
     logger.info("eval_done", accuracy=metrics["accuracy"], macro_f1=metrics["macro_f1"])
     return metrics
