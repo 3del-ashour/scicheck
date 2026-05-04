@@ -12,6 +12,7 @@ data/chroma/
 data/raw/
 data/processed/
 *.log
+logs/
 .idea/
 .vscode/
 eval/results*.json
