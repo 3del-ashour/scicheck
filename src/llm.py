@@ -45,7 +45,14 @@ class OpenAIClient(LLMClient):
 
 
 class FakeClient(LLMClient):
-    """Used in tests. Returns canned responses based on substrings in `user`."""
+    """Used in tests. Returns canned responses based on substring matching.
+
+    Each key in ``responses`` is checked (in insertion order) against both the
+    user message and the system prompt — the first hit wins. This lets tests
+    distinguish between agents that share user content (e.g. claim extractor
+    and query-expansion both receive the bare claim) by keying on a unique
+    phrase from the system prompt instead.
+    """
 
     def __init__(self, responses: dict[str, str] | None = None) -> None:
         self.responses = responses or {}
@@ -54,6 +61,6 @@ class FakeClient(LLMClient):
     def complete(self, system: str, user: str, **kwargs) -> str:
         self.calls.append((system, user))
         for key, value in self.responses.items():
-            if key in user:
+            if key in user or key in system:
                 return value
         return ""
