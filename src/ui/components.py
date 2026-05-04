@@ -10,14 +10,14 @@ LABEL_COLORS = {
 def inject_custom_css():
     st.markdown("""
         <style>
-        /* Ana Arka Plan ve Font */
+        /* Main Background and Font */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
         
         html, body, [class*="st-"] {
             font-family: 'Inter', sans-serif;
         }
 
-        /* Glassmorphism Kart Yapısı */
+        /* Glassmorphism Card Structure */
         .premium-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -33,7 +33,7 @@ def inject_custom_css():
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Verdict Badge'leri */
+        /* Verdict Badges */
         .badge {
             padding: 6px 12px;
             border-radius: 20px;
@@ -47,7 +47,7 @@ def inject_custom_css():
         .badge-refuted { background-color: #ff4444; color: white; }
         .badge-insufficient { background-color: #ffbb33; color: black; }
 
-        /* Metrik Kartları */
+        /* Metric Cards */
         .metric-container {
             background: linear-gradient(135deg, #1e1e2f 0%, #252540 100%);
             border-radius: 12px;
@@ -76,7 +76,7 @@ def render_per_claim(pcr: PerClaimResult) -> None:
         </div>
     """, unsafe_allow_html=True)
     
-    # Kanıtlar Kısmı
+    # Evidence Section
     st.markdown("### 📚 Supporting Evidence")
     cols = st.columns(len(pcr.evidence) if pcr.evidence else 1)
     
@@ -99,18 +99,39 @@ def render_per_claim(pcr: PerClaimResult) -> None:
     if not pcr.safety.passed:
         st.warning(f"🛡️ **Safety Flag:** {', '.join(pcr.safety.flags)}\n\n{pcr.safety.notes}")
 
-def render_metrics_tab(data: dict) -> None:
+def render_metrics_tab(data: dict | None = None) -> None:
     inject_custom_css()
     st.markdown("### 📊 System Performance Metrics")
     
+    if data is None:
+        p = Path("eval/results.json")
+        if not p.exists():
+            st.info("📊 Evaluation results are not available yet. Run `python scripts/run_eval.py 200` to generate results.")
+            return
+        try:
+            import json
+            data = json.loads(p.read_text())
+        except Exception as e:
+            st.error(f"Could not read results file: {e}")
+            return
+
+    if "error" in data:
+        st.error(f"❌ Evaluation error: {data['error']}")
+        return
+
     c1, c2, c3 = st.columns(3)
     with c1:
-        st.markdown(f'<div class="metric-container"><h3>{data["accuracy"]:.1%}</h3><p>Accuracy</p></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="metric-container"><h3>{data.get("accuracy", 0):.1%}</h3><p>Accuracy</p></div>', unsafe_allow_html=True)
     with c2:
-        st.markdown(f'<div class="metric-container"><h3>{data["macro_f1"]:.3f}</h3><p>Macro F1</p></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="metric-container"><h3>{data.get("macro_f1", 0):.3f}</h3><p>Macro F1</p></div>', unsafe_allow_html=True)
     with c3:
-        st.markdown(f'<div class="metric-container"><h3>{data["citation_precision"]:.1%}</h3><p>Citation Prec.</p></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="metric-container"><h3>{data.get("citation_precision", 0):.1%}</h3><p>Citation Prec.</p></div>', unsafe_allow_html=True)
     
     st.write("")
     st.markdown("#### Performance by Class")
-    st.bar_chart(data.get('per_class_f1', []))
+    if 'per_class_f1' in data:
+        st.bar_chart(data['per_class_f1'])
+    
+    st.divider()
+    st.subheader("Raw Data")
+    st.json(data)

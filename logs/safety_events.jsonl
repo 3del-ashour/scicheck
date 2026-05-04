@@ -98,3 +98,15 @@
 {"ts": "2026-05-03T16:56:56.876867+00:00", "claim_id": "c1", "label": "Supported", "confidence": 0.85, "passed": true, "flags": [], "notes": ""}
 {"ts": "2026-05-03T16:56:56.878867+00:00", "claim_id": "c1", "label": "Supported", "confidence": 0.88, "passed": true, "flags": [], "notes": ""}
 {"ts": "2026-05-03T16:56:56.880914+00:00", "claim_id": "c1", "label": "Refuted", "confidence": 1.5, "passed": false, "flags": ["hallucinated_citation", "invalid_confidence"], "notes": "hallucinated_citation: ['s_fake'] | invalid_confidence: 1.5"}
+{"ts": "2026-05-04T15:50:01.967444+00:00", "claim_id": "c1", "label": "Refuted", "confidence": 0.82, "passed": true, "flags": [], "notes": ""}
+{"ts": "2026-05-04T15:50:01.968469+00:00", "claim_id": "c1", "label": "Supported", "confidence": 0.88, "passed": true, "flags": [], "notes": ""}
+{"ts": "2026-05-04T15:50:01.969303+00:00", "claim_id": "c1", "label": "Insufficient Evidence", "confidence": 0.74, "passed": true, "flags": [], "notes": ""}
+{"ts": "2026-05-04T15:50:01.969972+00:00", "claim_id": "c1", "label": "Refuted", "confidence": 0.8, "passed": true, "flags": [], "notes": ""}
+{"ts": "2026-05-04T15:50:01.970380+00:00", "claim_id": "c1", "label": "Refuted", "confidence": 0.66, "passed": true, "flags": [], "notes": ""}
+{"ts": "2026-05-04T15:50:01.970753+00:00", "claim_id": "c1", "label": "Supported", "confidence": 0.74, "passed": true, "flags": [], "notes": ""}
+{"ts": "2026-05-04T15:50:01.971131+00:00", "claim_id": "c1", "label": "Supported", "confidence": 0.6, "passed": true, "flags": [], "notes": ""}
+{"ts": "2026-05-04T15:50:01.971488+00:00", "claim_id": "c1", "label": "Supported", "confidence": 0.85, "passed": true, "flags": [], "notes": ""}
+{"ts": "2026-05-04T15:50:01.971840+00:00", "claim_id": "c1", "label": "Refuted", "confidence": 0.81, "passed": true, "flags": [], "notes": ""}
+{"ts": "2026-05-04T15:50:01.972196+00:00", "claim_id": "c1", "label": "Insufficient Evidence", "confidence": 0.56, "passed": true, "flags": [], "notes": ""}
+{"ts": "2026-05-04T15:50:23.222478+00:00", "claim_id": "c1", "label": "Refuted", "confidence": 0.82, "passed": true, "flags": [], "notes": ""}
+{"ts": "2026-05-04T15:50:23.223357+00:00", "claim_id": "c1", "label": "Supported", "confidence": 0.88, "passed": true, "flags": [], "notes": ""}

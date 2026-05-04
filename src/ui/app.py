@@ -1,76 +1,24 @@
 import sys
 from pathlib import Path
 
-# Project root dizinini Python yoluna ekle
+# Add project root to Python path
 root_path = Path(__file__).resolve().parent.parent.parent
 if str(root_path) not in sys.path:
     sys.path.append(str(root_path))
 
 import streamlit as st
 import uuid
-from src.contracts import (
-    FinalResponse, PerClaimResult, Claim, Evidence, 
-    Verdict, CredibilityOutput, CredibilityScore, SafetyReport
-)
+from src.orchestrator import run
 from src.ui.components import render_per_claim, render_metrics_tab
 
-# --- MOCK ORCHESTRATOR ---
-def mock_run(user_input: str) -> FinalResponse:
-    """Simulates the orchestrator output for UI development."""
-    trace_id = str(uuid.uuid4())
-    
-    # Mock Claim
-    claim = Claim(id="c1", text=user_input, type="scientific")
-    
-    # Mock Evidence
-    evidence = [
-        Evidence(
-            source_id="s1", 
-            title="The Lancet: Study on Vaccines", 
-            text="Comprehensive analysis shows no link between vaccines and autism...", 
-            score=0.95,
-            url="https://example.com/lancet"
-        ),
-        Evidence(
-            source_id="s2", 
-            title="WHO Report 2023", 
-            text="Global vaccination data confirms safety profiles across all age groups.", 
-            score=0.88
-        )
-    ]
-    
-    # Mock Credibility
-    credibility = CredibilityOutput(
-        claim_id="c1",
-        scored_sources=[
-            CredibilityScore(source_id="s1", score=0.98, reasoning="Peer-reviewed top-tier journal."),
-            CredibilityScore(source_id="s2", score=0.92, reasoning="International health organization.")
-        ]
-    )
-    
-    # Mock Verdict
-    verdict = Verdict(
-        claim_id="c1",
-        label="Refuted" if "autism" in user_input.lower() else "Supported",
-        confidence=0.94,
-        reasoning="Multiple high-quality peer-reviewed studies and health organizations refute this claim with high confidence.",
-        citations=["s1", "s2"]
-    )
-    
-    # Mock Safety
-    safety = SafetyReport(passed=True, flags=[], notes="No issues detected.")
-    
-    per_claim = [
-        PerClaimResult(
-            claim=claim,
-            evidence=evidence,
-            credibility=credibility,
-            verdict=verdict,
-            safety=safety
-        )
-    ]
-    
-    return FinalResponse(trace_id=trace_id, claim_text=user_input, per_claim=per_claim)
+# --- PIPELINE WRAPPER ---
+def run_pipeline(user_input: str):
+    """Calls the real orchestrator with a fallback to mock."""
+    try:
+        return run(user_input), False
+    except NotImplementedError:
+        from src.safety.mock_pipeline import mock_run
+        return mock_run(user_input), True
 
 # --- STREAMLIT APP ---
 st.set_page_config(page_title="SciCheck AI", page_icon="🔬", layout="wide")
@@ -127,10 +75,13 @@ with tab_check:
                 status.text("🛡️ Safety Monitor: Checking for bias...")
                 time.sleep(0.5); progress_bar.progress(100)
                 
-                # Get the mock response
-                response = mock_run(user_input)
+                # Get the response
+                response, is_mock = run_pipeline(user_input)
                 status.empty()
                 progress_bar.empty()
+
+            if is_mock:
+                st.warning("⚠️ Orchestrator (Member 1) not yet implemented. Running in **Mock Mode** using heuristic logic.")
 
             st.divider()
             st.success(f"Analysis Complete! (Trace ID: {response.trace_id})")
