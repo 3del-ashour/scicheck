@@ -39,14 +39,15 @@ with tab_check:
     with st.sidebar:
         st.header("Demo Examples")
         examples = [
-            "Vaccines cause autism.",
-            "Drinking bleach cures COVID-19.",
+            "Non-CpG cytosine methylation is the major type of methylation in human PBMC cells.",
+            "Exposure to sunlight influences the cutaneous production of vitamin D.",
             "Vitamin C prevents the common cold.",
-            "The earth is round."
         ]
         for ex in examples:
             if st.button(ex):
                 st.session_state["claim_input"] = ex
+                st.session_state["main_input"] = ex
+                st.rerun()
 
     # Input Area
     user_input = st.text_area(
