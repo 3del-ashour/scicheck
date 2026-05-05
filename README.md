@@ -88,5 +88,5 @@ streamlit run src/ui/app.py
 
 ## Deadlines
 
-- **Final submission:** 06.05.2025 Wednesday 15:00
+- **Final submission:** 06.05.2026 Wednesday 15:00
 - **Internal milestones** in `ROLES.md`
