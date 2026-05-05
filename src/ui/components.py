@@ -14,126 +14,132 @@ LABEL_COLORS = {
 def inject_custom_css():
     st.markdown("""
         <style>
-        /* Modern Typography */
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        /* Import Design System Fonts & Icons */
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
         
         html, body, [class*="st-"] {
-            font-family: 'Outfit', sans-serif !important;
+            font-family: 'Space Grotesk', sans-serif !important;
         }
 
-        /* Dark Premium Background */
+        /* Deep Space Theme */
         .stApp {
-            background-color: #0B0E14;
+            background-color: #0A0E14;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(100, 108, 255, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 200, 81, 0.05) 0%, transparent 40%);
+                url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPjxwb2x5Z29uIHBvaW50cz0iMzAsMCA2MCwzMCAzMCw2MCAwLDMwIi8+PC9nPjwvc3ZnPg==");
+            background-size: 120px 120px;
         }
 
-        /* Hide Streamlit default elements for a cleaner app look */
+        /* Hide Streamlit components */
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
         header {background: transparent !important;}
 
-        /* Glassmorphism Cards */
-        .premium-card {
-            background: rgba(20, 24, 34, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 25px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* Sharp Glass Panels (0px radius as per Design system) */
+        .glass-panel {
+            background: rgba(18, 24, 38, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(60, 73, 78, 0.3);
+            box-shadow: inset 0 0 20px rgba(0, 212, 255, 0.05);
+            border-radius: 0px !important;
+            padding: 24px;
+            margin-bottom: 20px;
         }
         
-        .premium-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(100, 108, 255, 0.3);
-            box-shadow: 0 15px 40px 0 rgba(100, 108, 255, 0.15);
+        .glass-panel-glow {
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2), inset 0 0 20px rgba(0, 212, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.5) !important;
         }
 
-        /* Glowing Text Effect */
-        .text-glow {
-            text-shadow: 0 0 20px rgba(100, 108, 255, 0.6);
-        }
-
-        /* Badges */
-        .badge {
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.8em;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            display: inline-block;
-        }
-        
-        .badge-supported { 
-            background: linear-gradient(135deg, #00C851 0%, #007E33 100%);
-            color: white; 
-            border: 1px solid rgba(0,200,81,0.4);
-        }
-        .badge-refuted { 
-            background: linear-gradient(135deg, #ff4444 0%, #CC0000 100%);
-            color: white; 
-            border: 1px solid rgba(255,68,68,0.4);
-        }
-        .badge-insufficient { 
-            background: linear-gradient(135deg, #ffbb33 0%, #FF8800 100%);
-            color: black; 
-            border: 1px solid rgba(255,187,51,0.4);
-        }
-
-        /* Metric Cards */
-        .metric-container {
-            background: rgba(20, 24, 34, 0.8);
-            border-radius: 16px;
-            padding: 25px 20px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .metric-container::before {
-            content: '';
+        /* AI Scanner Animation */
+        .ai-scanner {
+            height: 2px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.8), transparent);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
             position: absolute;
-            top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, #646cff, #00C851);
+            z-index: 10;
+            animation: scan 3s infinite ease-in-out;
+        }
+        
+        @keyframes scan {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
         }
 
-        .metric-container h3 {
-            font-size: 2.5em;
-            font-weight: 800;
-            margin: 0;
-            background: linear-gradient(135deg, #ffffff 0%, #a0a5ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .metric-container p {
-            color: #8892b0;
-            font-size: 0.9em;
-            font-weight: 600;
+        /* Badges & Status */
+        .status-chip {
+            padding: 4px 12px;
+            border-radius: 0px;
+            font-weight: 700;
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 10px;
+            letter-spacing: 0.1em;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
-        /* Agent Step Animations */
-        @keyframes pulse-glow {
-            0% { opacity: 0.6; transform: scale(0.98); }
-            50% { opacity: 1; transform: scale(1.02); filter: drop-shadow(0 0 10px rgba(100, 108, 255, 0.5)); }
-            100% { opacity: 0.6; transform: scale(0.98); }
+        .status-supported { 
+            background: rgba(0, 245, 155, 0.1);
+            color: #00F59B;
+            border-color: rgba(0, 245, 155, 0.3);
+            box-shadow: 0 0 10px rgba(0, 245, 155, 0.1);
+        }
+        .status-refuted { 
+            background: rgba(255, 68, 68, 0.1);
+            color: #FF4444;
+            border-color: rgba(255, 68, 68, 0.3);
+        }
+
+        /* Streamlit Widget Overrides */
+        div[data-baseweb="textarea"] {
+            background-color: rgba(10, 14, 20, 0.6) !important;
+            border: 1px solid rgba(60, 73, 78, 0.3) !important;
+            border-radius: 0px !important;
         }
         
-        .agent-step-active {
-            animation: pulse-glow 1.5s infinite ease-in-out;
-            border-left: 4px solid #646cff !important;
-            background: rgba(100, 108, 255, 0.1) !important;
+        button[data-testid="baseButton-primary"] {
+            background-color: #00D4FF !important;
+            color: #000000 !important;
+            border-radius: 0px !important;
+            border: none !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.05em !important;
+            text-transform: uppercase !important;
+            width: 100%;
+        }
+        
+        button[data-testid="baseButton-secondary"] {
+            background-color: transparent !important;
+            border: 1px solid rgba(0, 212, 255, 0.3) !important;
+            color: #00D4FF !important;
+            border-radius: 0px !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        button[data-testid="baseButton-secondary"]:hover {
+            border-color: #00D4FF !important;
+            background-color: rgba(0, 212, 255, 0.05) !important;
+        }
+
+        /* Agent Step Style */
+        .agent-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            border: 1px solid rgba(60, 73, 78, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .agent-node-active {
+            border-color: #00D4FF;
+            background: rgba(0, 212, 255, 0.05);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.1);
         }
         </style>
     """, unsafe_allow_html=True)
@@ -141,23 +147,30 @@ def inject_custom_css():
 def render_per_claim(pcr: PerClaimResult) -> None:
     inject_custom_css()
     
-    color = LABEL_COLORS.get(pcr.verdict.label, "gray")
-    badge_class = f"badge-{pcr.verdict.label.lower().replace(' ', '-')}"
+    badge_class = f"status-{pcr.verdict.label.lower().replace(' ', '-')}"
+    status_icon = "verified" if pcr.verdict.label == "Supported" else "cancel" if pcr.verdict.label == "Refuted" else "balance"
     
     # Claim Header
     st.markdown(f"""
-        <div class="premium-card">
-            <span class="badge {badge_class}">{pcr.verdict.label}</span>
-            <h2 style="margin-top: 15px; font-weight: 700;">{pcr.claim.text}</h2>
-            <p style="color: #aaa; font-style: italic;">Scientific Analysis — Confidence: {pcr.verdict.confidence:.2%}</p>
-            <hr style="border-color: rgba(255,255,255,0.1);">
-            <h4>Analysis Reasoning</h4>
-            <p style="line-height: 1.6;">{pcr.verdict.reasoning}</p>
+        <div class="glass-panel glass-panel-glow">
+            <div class="status-chip {badge_class}">
+                <span class="material-symbols-outlined" style="font-size: 16px;">{status_icon}</span>
+                {pcr.verdict.label}
+            </div>
+            <h2 style="margin-top: 20px; font-weight: 700; font-size: 28px; color: #dfe2eb; letter-spacing: -0.01em;">{pcr.claim.text}</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05);">
+                <p style="color: #859398; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">PRECISION ANALYSIS</p>
+                <p style="color: #00D4FF; font-weight: 700; margin: 0;">CONFIDENCE: {pcr.verdict.confidence:.1%}</p>
+            </div>
+            <div style="margin-top: 25px;">
+                <h4 style="color: #a8e8ff; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;">REASONING ENGINE OUTPUT</h4>
+                <p style="line-height: 1.6; color: #bbc9cf;">{pcr.verdict.reasoning}</p>
+            </div>
         </div>
     """, unsafe_allow_html=True)
     
     # Evidence Section
-    st.markdown("### 📚 Supporting Evidence")
+    st.markdown("<h4 style='color: #dfe2eb; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;'>📚 VERIFICATION SOURCES</h4>", unsafe_allow_html=True)
     cols = st.columns(len(pcr.evidence) if pcr.evidence else 1)
     
     cred_map = {s.source_id: s for s in pcr.credibility.scored_sources}
@@ -165,56 +178,47 @@ def render_per_claim(pcr: PerClaimResult) -> None:
     for i, e in enumerate(pcr.evidence):
         with cols[i]:
             cred = cred_map.get(e.source_id)
-            score_color = "#00C851" if (cred and cred.score > 0.8) else "#ffbb33"
+            is_high = cred and cred.score > 0.8
+            score_color = "#00F59B" if is_high else "#FF8800"
             
             st.markdown(f"""
-                <div style="background: rgba(20, 24, 34, 0.8); border-radius: 16px; padding: 20px; border: 1px solid rgba(255,255,255,0.05); border-left: 4px solid {score_color}; height: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='rgba(255,255,255,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.05)'">
-                    <h5 style="margin: 0; font-size: 1.1em; color: #E2E8F0; line-height: 1.4;">{e.title}</h5>
-                    <div style="margin: 12px 0;">
-                        <span style="background: rgba({ '0,200,81' if score_color == '#00C851' else '255,187,51' }, 0.1); color: {score_color}; padding: 4px 10px; border-radius: 12px; font-size: 0.75em; font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba({ '0,200,81' if score_color == '#00C851' else '255,187,51' }, 0.2);">
-                            CREDIBILITY SCORE: {cred.score if cred else 'N/A'}
+                <div class="glass-panel" style="padding: 20px; border-top: 2px solid {score_color}; height: 100%;">
+                    <h5 style="margin: 0; font-size: 16px; color: #dfe2eb; line-height: 1.4;">{e.title}</h5>
+                    <div style="margin: 15px 0;">
+                        <span style="color: {score_color}; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; border: 1px solid {score_color}44; padding: 2px 8px;">
+                            CREDIBILITY: {cred.score if cred else 'N/A'}
                         </span>
                     </div>
-                    <p style="font-size: 0.95em; color: #94A3B8; line-height: 1.6; margin-bottom: 0;">{e.text[:200]}...</p>
+                    <p style="font-size: 14px; color: #859398; line-height: 1.6; margin-bottom: 0;">{e.text[:200]}...</p>
                 </div>
             """, unsafe_allow_html=True)
 
     # Safety
     if not pcr.safety.passed:
-        st.warning(f"🛡️ **Safety Flag:** {', '.join(pcr.safety.flags)}\n\n{pcr.safety.notes}")
+        st.error(f"⚠️ **SAFETY ALERT:** {', '.join(pcr.safety.flags).upper()}\n\n{pcr.safety.notes}")
 
 def render_metrics_tab(data: dict | None = None) -> None:
     inject_custom_css()
-    st.markdown("### 📊 System Performance Metrics")
+    st.markdown("<h3 style='text-transform: uppercase; letter-spacing: 0.1em;'>📊 SYSTEM ANALYTICS</h3>", unsafe_allow_html=True)
     
     if data is None:
         p = Path("eval/results.json")
         if not p.exists():
-            st.info("📊 Evaluation results are not available yet. Run `python scripts/run_eval.py 200` to generate results.")
+            st.info("📊 Evaluation results are not available yet.")
             return
         try:
             data = json.loads(p.read_text())
         except Exception as e:
-            st.error(f"Could not read results file: {e}")
+            st.error(f"Error: {e}")
             return
-
-    if "error" in data:
-        st.error(f"❌ Evaluation error: {data['error']}")
-        return
 
     c1, c2, c3 = st.columns(3)
     with c1:
-        st.markdown(f'<div class="metric-container"><h3>{data.get("accuracy", 0):.1%}</h3><p>Accuracy</p></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="glass-panel" style="text-align: center;"><h3 style="color: #00D4FF; font-size: 40px; margin: 0;">{data.get("accuracy", 0):.1%}</h3><p style="color: #859398; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin: 10px 0 0 0;">Accuracy</p></div>', unsafe_allow_html=True)
     with c2:
-        st.markdown(f'<div class="metric-container"><h3>{data.get("macro_f1", 0):.3f}</h3><p>Macro F1</p></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="glass-panel" style="text-align: center;"><h3 style="color: #00D4FF; font-size: 40px; margin: 0;">{data.get("macro_f1", 0):.3f}</h3><p style="color: #859398; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin: 10px 0 0 0;">Macro F1</p></div>', unsafe_allow_html=True)
     with c3:
-        st.markdown(f'<div class="metric-container"><h3>{data.get("citation_precision", 0):.1%}</h3><p>Citation Prec.</p></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="glass-panel" style="text-align: center;"><h3 style="color: #00D4FF; font-size: 40px; margin: 0;">{data.get("citation_precision", 0):.1%}</h3><p style="color: #859398; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin: 10px 0 0 0;">Citation Prec.</p></div>', unsafe_allow_html=True)
     
-    st.write("")
-    st.markdown("#### Performance by Class")
     if 'per_class_f1' in data:
         st.bar_chart(data['per_class_f1'])
-    
-    st.divider()
-    st.subheader("Raw Data")
-    st.json(data)
