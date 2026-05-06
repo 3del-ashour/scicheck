@@ -133,8 +133,6 @@ with tab_check:
             time.sleep(0.8)
             analysis_placeholder.empty() # Results will follow
 
-            if is_mock:
-                st.warning("⚠️ Orchestrator (Member 1) not yet implemented. Running in **Mock Mode** using heuristic logic.")
 
             st.divider()
             st.success(f"Analysis Complete! (Trace ID: {response.trace_id})")

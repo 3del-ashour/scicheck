@@ -26,7 +26,7 @@ A multi-agent LLM system that fact-checks science and health claims using Retrie
 
 ## Tech Stack
 
-- **Python 3.11+**
+- **Python 3.9+** (3.11+ recommended)
 - **LangGraph** + **LangChain** — agent orchestration
 - **ChromaDB** — vector database
 - **sentence-transformers** (`all-MiniLM-L6-v2`) — embeddings (free, local)
@@ -66,17 +66,26 @@ scicheck/
 └── scripts/                     # ingestion, eval scripts
 ```
 
-## Quick Start
+## How to Run
 
 ```bash
+# 1. Clone the repo
 git clone https://github.com/3del-ashour/scicheck.git
 cd scicheck
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env  # fill in your OPENAI_API_KEY
-python scripts/ingest.py   # build the vector DB
-streamlit run src/ui/app.py
+
+# 2. Install dependencies
+pip3 install -r requirements.txt
+
+# 3. Set up environment
+cp .env.example .env
+
+# 4. Start the app
+python3 -m streamlit run src/ui/app.py
 ```
+
+Open **http://localhost:8501** in your browser.
+
+> The app runs in **Mock Mode** by default (no API key needed). To enable real LLM fact-checking, open `.env` and add your API key — see `.env.example` for supported providers (OpenAI, Groq, Ollama).
 
 ## Reading Order for New Members
 
